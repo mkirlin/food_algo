@@ -225,7 +225,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Chips Subchoices -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading13">
@@ -404,13 +404,14 @@
         // JavaScript to hide other decisions when one is chosen
         document.addEventListener('DOMContentLoaded', function() {
             const choiceButtons = document.querySelectorAll('[data-bs-toggle="collapse"]');
+            const decisionItems = document.querySelectorAll('.accordion-item');
+
             choiceButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Hide other decisions
-                    choiceButtons.forEach(otherButton => {
-                        if (otherButton !== button) {
-                            const targetId = otherButton.getAttribute('data-bs-target');
-                            const target = document.querySelector(targetId);
+                    // Hide other decision items
+                    decisionItems.forEach(item => {
+                        if (item !== button.closest('.accordion-item')) {
+                            const target = item.querySelector('.accordion-collapse');
                             if (target) {
                                 const bsCollapse = new bootstrap.Collapse(target, {
                                     toggle: false
